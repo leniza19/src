@@ -1,6 +1,9 @@
 package mathchem.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -19,9 +22,12 @@ import mathchem.data.PeroksidDAO;
 public class PeroksidServlet extends HttpServlet
 {
 	private RequestDispatcher jsp;
+	private String path="";
 
 	public void init(ServletConfig config) throws ServletException {
 		ServletContext context = config.getServletContext();
+		path=context.getRealPath("/");
+		System.out.println(path);
 		jsp = context.getRequestDispatcher("/WEB-INF/jsp/peroksid.jsp");
 	}
 
@@ -36,6 +42,28 @@ public class PeroksidServlet extends HttpServlet
 		req.setAttribute("zamerItems", zamerItems);
 		req.setAttribute("catalystItems", catalystItems);
 		req.setAttribute("constItems", constItems);
+		
+		PrintWriter out = new PrintWriter(path+"\\json\\exp.json");
+		String jsonText = "";
+		
+		Iterator it=zamerItems.iterator();
+			
+		jsonText = jsonText + "[";
+				
+        while(it.hasNext())
+        {
+        	ExpItem expItem=(ExpItem)it.next();
+        	jsonText = jsonText + "{\"idexp\": " + expItem.getIdExp() + ", \n" + 
+        	"\"time\": " + expItem.getTime() + ",\n " + 
+        	"\"conc\": " + expItem.getConcentration() + "},\n";        	        	
+        }
+		
+        jsonText = jsonText.substring(0, jsonText.length() - 2);
+        jsonText = jsonText + "]";
+        
+        out.println(jsonText);
+		out.close();
+		
 		jsp.forward(req, resp);
 	}
 }
