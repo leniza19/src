@@ -27,7 +27,7 @@ public class EmployeeServlet extends HttpServlet
 		if (EmpName.compareTo("irekmars") == 0) {
 			jsp = context.getRequestDispatcher("/WEB-INF/jsp/employee/irekmars.jsp");
 		} else if (EmpName.compareTo("spivak") == 0) {
-			jsp = context.getRequestDispatcher("/WEB-INF/jsp/employee/irekmars.jsp");
+			jsp = context.getRequestDispatcher("/WEB-INF/jsp/employee/spivak.jsp");
 		}
 		
 	}
