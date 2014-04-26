@@ -36,7 +36,7 @@ public class InverseServlet extends HttpServlet
 			req.setAttribute("b3", 0.9);
 			req.setAttribute("d", 0.9);
 		} else	if (startGA.equals("yes")) {
-			// ГА здесь
+			
 			OctaveEngine octave = new OctaveEngineFactory().getScriptEngine();
 			octave.eval("pkg load ga");
 			OctaveDouble x = new OctaveDouble(new double[] { 3 }, 1, 1);
