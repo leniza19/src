@@ -1,7 +1,10 @@
 package mathchem.web;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStreamReader;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -18,10 +21,14 @@ import dk.ange.octave.type.OctaveDouble;
 public class InverseServlet extends HttpServlet
 {
 	private RequestDispatcher jsp;
-
+	
+	private static String path="";
+	
 	public void init(ServletConfig config) throws ServletException {
 		ServletContext context = config.getServletContext();
 		jsp = context.getRequestDispatcher("/WEB-INF/jsp/inverse.jsp");
+		path=context.getRealPath("/");	
+		System.out.println(path);
 	}
 
 
@@ -70,5 +77,19 @@ public class InverseServlet extends HttpServlet
 		} 
 			
 		jsp.forward(req, resp);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        File f = new File(path+"\\octave\\prim.txt");
+        BufferedReader fin = new BufferedReader(new FileReader(f));
+        String name;
+        String line;
+        //System.out.println("Print File "+f.getName()+"? y/n");
+        //name = br.readLine();
+        //if(name.equals("y"))
+        while ((line = fin.readLine()) != null) System.out.println(line);
 	}
+
+	 
+	
+	
 }
