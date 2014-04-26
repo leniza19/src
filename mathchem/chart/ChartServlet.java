@@ -2,13 +2,9 @@ package mathchem.chart;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.lang.Object;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
