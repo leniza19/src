@@ -97,7 +97,7 @@ public class PeroksidDAO extends DataAccessObject {
 			String sql = 
 					"SELECT c.idcalc,c.params,c.note catalyst, eadirect*0.001 as ea, lna0direct as lnk0 " +
 					"FROM chemtable.energyactvn ea, chemtable.calculation c " +
-					"where ea.idcalc=c.idcalc;"; 
+					"where ea.idcalc=c.idcalc and c.idchem=5;"; 
 										
 			statement = connection.prepareStatement(sql);
 			rs = statement.executeQuery();
